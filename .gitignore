@@ -1,1 +1,7 @@
-.idea
+.idea/*
+.env
+/node_modules/
+/var/templates_c/*
+/var/cache/*
+!/var/templates_c/.gitkeep
+!/var/cache/.gitkeep
