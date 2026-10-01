@@ -9,4 +9,13 @@ class Category
         return $stmt->fetch() ?: null;
     }
 
+    public static function withArticles(): array
+    {
+        return Database::getPDO()->query(
+            'SELECT c.* FROM categories c
+             WHERE EXISTS (SELECT 1 FROM article_category ac WHERE ac.category_id = c.id)
+             ORDER BY c.name'
+        )->fetchAll();
+    }
+
 }

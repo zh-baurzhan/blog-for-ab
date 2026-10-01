@@ -19,6 +19,9 @@ class Router
 
     }
 
+    /**
+     * @throws \Smarty\Exception
+     */
     public function dispatch(): void
     {
         $method = $_SERVER['REQUEST_METHOD'];
@@ -42,6 +45,6 @@ class Router
         }
 
         http_response_code(404);
-        echo '404 — страница не найдена';
+        echo TemplateRenderer::render('404.tpl', ['title' => 'Страница не найдена']);
     }
 }
