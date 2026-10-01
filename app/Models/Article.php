@@ -3,6 +3,10 @@
 class Article
 {
     private const string LIST_FIELDS = 'a.id, a.title, a.slug, a.image, a.description, a.views, a.published_at';
+    public const array SORTS = [
+        'date'  => 'a.published_at DESC',
+        'views' => 'a.views DESC, a.published_at DESC',
+    ];
 
     public static function findBySlug(string $slug): ?array
     {
@@ -70,6 +74,31 @@ class Article
         }
 
         return $articles;
+    }
+
+    // для пагинации
+    public static function countByCategory(int $categoryId): int
+    {
+        $stmt = Database::getPDO()->prepare('SELECT COUNT(*) FROM article_category WHERE category_id = ?');
+        $stmt->execute([$categoryId]);
+        return (int) $stmt->fetchColumn();
+    }
+
+    public static function byCategory(int $categoryId, string $sort = 'date', int $limit = 3, int $offset = 0): array
+    {
+        $orderBy = self::SORTS[$sort] ?? self::SORTS['date'];
+
+        $stmt = Database::getPDO()->prepare(
+            'SELECT ' . self::LIST_FIELDS . '
+             FROM articles a
+             JOIN article_category ac ON ac.article_id = a.id
+             WHERE ac.category_id = ?
+             ORDER BY ' . $orderBy . '
+             LIMIT ' . (int) $limit . ' OFFSET ' . (int) $offset
+        );
+        $stmt->execute([$categoryId]);
+
+        return self::withCategories($stmt->fetchAll());
     }
 
 }
