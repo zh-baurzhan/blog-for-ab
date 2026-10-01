@@ -1,0 +1,48 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.container {
+    max-width: $container-width;
+    margin: 0 auto;
+    padding: 0 $gap;
+
+    @include mobile {
+        padding: 0 16px;
+    }
+}
+
+.site-header {
+    padding: 20px 0;
+    margin-bottom: $gap * 1.5;
+    border-bottom: 1px solid $color-border;
+    background: $color-bg-soft;
+
+    .logo {
+        font-size: 22px;
+        font-weight: 700;
+        color: $color-text;
+        text-decoration: none;
+    }
+}
+
+.site-footer {
+    margin-top: $gap * 2;
+    padding: 20px 0;
+    border-top: 1px solid $color-border;
+    color: $color-muted;
+    font-size: 14px;
+}
+
+.section {
+    margin-bottom: $gap * 2;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $gap;
+
+    @include mobile {
+        grid-template-columns: 1fr;
+    }
+}

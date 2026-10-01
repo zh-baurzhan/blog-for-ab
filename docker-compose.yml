@@ -28,6 +28,12 @@ services:
     ports:
       # что-бы можно было подключиться из шторма к бд внутри контейнера
       - "127.0.0.1:53306:3306"
+  sass:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "npm install --no-audit --no-fund && npm run watch"
 
 volumes:
   db_ab_data:

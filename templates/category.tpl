@@ -33,7 +33,7 @@
     {if $pages > 1}
         <nav class="pagination">
             {if $page > 1}
-                <a href="/category/{$category.slug}?sort={$sort}&page={$page - 1}">< Назад</a>
+                <a href="/category/{$category.slug}?sort={$sort}&page={$page - 1}">&larr; Назад</a>
             {/if}
 
             {for $p = 1 to $pages}
@@ -45,10 +45,10 @@
             {/for}
 
             {if $page < $pages}
-                <a href="/category/{$category.slug}?sort={$sort}&page={$page + 1}">Вперёд ></a>
+                <a href="/category/{$category.slug}?sort={$sort}&page={$page + 1}">Вперёд &rarr;</a>
             {/if}
         </nav>
     {/if}
 
-    <p><a href="/">< На главную</a></p>
+    <p><a href="/">&larr; На главную</a></p>
 {/block}

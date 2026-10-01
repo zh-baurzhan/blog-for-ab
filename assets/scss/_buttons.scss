@@ -1,0 +1,7 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.btn {
+    @include button($color-primary);
+    margin-top: $gap * 0.75;
+}
