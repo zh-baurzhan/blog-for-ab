@@ -2,7 +2,7 @@
 
 class CategoryController
 {
-    public function index(string $slug)
+    public function show(string $slug): string
     {
         return 'Category index';
     }

@@ -10,7 +10,7 @@ if (!file_exists($smarty)) {
 require_once($smarty);
 
 spl_autoload_register(function (string $class) {
-    foreach (['app', 'app/Controllers'] as $dir) {
+    foreach (['app', 'app/Models', 'app/Controllers'] as $dir) {
         $file = ROOT . "/$dir/$class.php";
         if (file_exists($file)) {
             require_once($file);
@@ -20,6 +20,6 @@ spl_autoload_register(function (string $class) {
 
 $router = new Router();
 $router->get('/', [IndexController::class, 'index']);
-$router->get('/category/{slug}', [CategoryController::class, 'index']);
-$router->get('/post/{slug}', [ArticleController::class, 'index']);
+$router->get('/category/{slug}', [CategoryController::class, 'show']);
+$router->get('/post/{slug}', [ArticleController::class, 'show']);
 $router->dispatch();
