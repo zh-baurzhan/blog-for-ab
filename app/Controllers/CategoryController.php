@@ -26,7 +26,6 @@ class CategoryController
         $total = Article::countByCategory((int) $category['id']);
         $pages = max(1, (int) ceil($total / self::PER_PAGE));
         $page  = min(max(1, (int) ($_GET['page'] ?? 1)), $pages);
-        writeLog($pages, $page, ($page - 1) * self::PER_PAGE);
 
 
         $articles = Article::byCategory(
