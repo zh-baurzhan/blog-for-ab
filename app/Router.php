@@ -44,7 +44,6 @@ class Router
             }
         }
 
-        http_response_code(404);
-        echo TemplateRenderer::render('404.tpl', ['title' => 'Страница не найдена']);
+        echo TemplateRenderer::notFound();
     }
 }

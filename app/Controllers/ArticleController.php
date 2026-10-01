@@ -10,8 +10,7 @@ class ArticleController
         $article = Article::findBySlug($slug);
 
         if (!$article) {
-            http_response_code(404);
-            return TemplateRenderer::render('404.tpl', ['title' => 'Не найдено']);
+            return TemplateRenderer::notFound();
         }
 
         Article::incrementViews((int) $article['id']);

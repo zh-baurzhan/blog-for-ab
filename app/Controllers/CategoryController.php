@@ -14,7 +14,7 @@ class CategoryController
 
         if (!$category) {
             http_response_code(404);
-            return TemplateRenderer::render('404.tpl', ['title' => 'Не найдено']);
+            return TemplateRenderer::notFound();
         }
 
         $sort = $_GET['sort'] ?? 'date';

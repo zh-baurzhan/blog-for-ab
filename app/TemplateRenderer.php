@@ -28,4 +28,10 @@ class TemplateRenderer
         return $sm->fetch($template);
     }
 
+    public static function notFound(): string
+    {
+        http_response_code(404);
+        return self::render('404.tpl', ['title' => 'Не найдено']);
+    }
+
 }
