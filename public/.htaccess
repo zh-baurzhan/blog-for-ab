@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# существующие файлы (картинки, css) отдаются как есть, всё остальное — в index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
